@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/bin/bash
 
 #
 #  Author: Cayetano Benavent, 2015.
