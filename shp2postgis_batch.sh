@@ -34,16 +34,16 @@ SHAPEFILES=$(find $GEODATAFOLDER -type f | grep "\."$SHPEXT)
 for SHP in $SHAPEFILES;
     do
         (
-          echo "\nProcessing file: " $SHP
+          printf "\nProcessing file: %s" $SHP
           LAYERNAME=$(basename $SHP .shp)
-          echo "SHP2PGSQL - exporting shapefile..."
+          printf "SHP2PGSQL - exporting shapefile..."
           shp2pgsql -s $CRS_EPSG -W $ENCD -I $SHP $DBSCHEMA.$LAYERNAME >> $SQLFILE
         )
     done
 
-echo "\nPSQL - Executing query: " $SQLFILE
+printf "\nPSQL - Executing query: %s" $SQLFILE
 psql -h $HOST -d $DATABASE -p $PORT -U $USER -f $SQLFILE -q
 
 $(rm $SQLFILE)
-echo "\nRemoved generated SQL file..."
-echo "\nProcess finished\n"
+printf "\nRemoved generated SQL file..."
+printf "\nProcess finished\n"
