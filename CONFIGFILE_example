@@ -25,6 +25,7 @@ SQLFILE=/tmp/shp2postgis.sql
 DATABASE=mydatabase
 HOST=myhost
 USER=myuser
+PASSWD=psswd
 PORT=5432
 DBSCHEMA=mydbschema
 ENCD='LATIN1'

@@ -31,6 +31,8 @@ CURRDIR=$(pwd)
 SHPEXT=shp
 SHAPEFILES=$(find $GEODATAFOLDER -type f | grep "\."$SHPEXT)
 
+export PGPASSWORD=$PASSWD
+
 for SHP in $SHAPEFILES;
     do
         (
