@@ -38,13 +38,13 @@ for SHP in $SHAPEFILES;
         (
           printf "\nProcessing file: %s" $SHP
           LAYERNAME=$(basename $SHP .shp)
-          printf "SHP2PGSQL - exporting shapefile..."
+          printf "\nSHP2PGSQL - exporting shapefile..."
           shp2pgsql -s $CRS_EPSG -W $ENCD -I $SHP $DBSCHEMA.$LAYERNAME >> $SQLFILE
         )
     done
 
-printf "\nPSQL - Executing query: %s" $SQLFILE
-psql -h $HOST -d $DATABASE -p $PORT -U $USER -f $SQLFILE -q
+printf "\nPSQL - Loading data to PostgreSQL: %s" $SQLFILE
+psql -h $HOST -d $DATABASE -p $PORT -U $USER -q -f $SQLFILE > /dev/null
 
 $(rm $SQLFILE)
 printf "\nRemoved generated SQL file..."
